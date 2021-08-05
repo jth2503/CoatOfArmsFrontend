@@ -1,14 +1,22 @@
 <mat-grid-list cols="5" rowHeight="fit" class="grid-layout-termeditor">
-  <mat-grid-tile colspan="5" rowspan="2">
-    <app-termeditor-topbar></app-termeditor-topbar>
+  <mat-grid-tile colspan="5" rowspan="1">
+    <app-termeditor-topbar [currentTerm]="currentTerm" (notify)="onNotify(undefined, $event)"></app-termeditor-topbar>
   </mat-grid-tile>
 
-  <mat-grid-tile colspan="1" rowspan="9">
-    <app-termeditor-termlist></app-termeditor-termlist>
+  <mat-grid-tile colspan="1" rowspan="5">
+    <app-termeditor-termlist class="termlist" [selectedTerms]="selectedTerms" (notify)="onNotify($event, CLICK_MODES.LIST_SELECTION)"></app-termeditor-termlist>
   </mat-grid-tile>
 
-  <mat-grid-tile colspan="4" rowspan="9">
-    <app-termeditor-content-container></app-termeditor-content-container>
+  <mat-grid-tile colspan="4" rowspan="5">
+    <mat-tab-group class="tab-group-layout" mat-align-tabs="center" mat-stretch-tabs>
+      <mat-tab label="Begriffe unterhalb">
+        <app-termeditor-termcontainer [terms]="currentTerm.children" (notify)="onNotify($event, CLICK_MODES.TERM_SELECTED_DOWNWARDS)"></app-termeditor-termcontainer>
+      </mat-tab>
+
+      <mat-tab label="Begriffe oberhalb">
+        <app-termeditor-termcontainer [terms]="currentTerm.parents" (notify)="onNotify($event, CLICK_MODES.TERM_SELECTED_UPWARDS)"></app-termeditor-termcontainer>
+      </mat-tab>
+    </mat-tab-group>
   </mat-grid-tile>
 </mat-grid-list>
 

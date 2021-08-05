@@ -1,0 +1,29 @@
+<h2 matDialogTitle>Beziehung zwischen Begriffen hinzufügen</h2>
+<mat-dialog-content>
+  <mat-form-field appearance="outline" style="width: 100%">
+    <mat-label>Zu verknüpfender Begriff</mat-label>
+    <input matInput type="text" required [formControl]="autocompleteControl" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" panelWidth="fit-content" (optionSelected)="termSelected($event.option.value)">
+      <mat-option *ngFor="let term of filteredTerms | async" [value]="term">
+        <ng-container *ngIf="term.hide">**</ng-container>
+        {{term.name}}
+      </mat-option>
+    </mat-autocomplete>
+    <mat-error *ngIf="autocompleteControl.hasError('required')">Bitte geben Sie einen Begriff ein.</mat-error>
+    <mat-error *ngIf="autocompleteControl.hasError('incorrect')">Bitte wählen Sie einen Begriff aus der Liste aus.</mat-error>
+  </mat-form-field>
+
+  <mat-divider></mat-divider>
+
+  <div class="mat-typography">
+    <h4>An welcher Stelle soll der Begriff angefügt werden?</h4>
+  </div>
+  <mat-radio-group required (change)="optionSelected($event.value)">
+    <mat-radio-button value="0" checked>Unterhalb des aktuellen Begriffs</mat-radio-button>
+    <mat-radio-button value="1">Oberhalb des aktuellen Begriffs</mat-radio-button>
+  </mat-radio-group>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button mat-stroked-button mat-dialog-close>Abbrechen</button>
+  <button mat-stroked-button [class.spinner]="spinnerHidden" [disabled]="spinnerHidden" (click)="saveNewRelationship()">Verknüpfung hinzufügen</button>
+</mat-dialog-actions>

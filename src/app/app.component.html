@@ -10,7 +10,7 @@
   <mat-sidenav #sidenav>
     <mat-nav-list>
       <mat-list-item *ngFor="let link of links">
-        <a matLine routerLink="{{link.route}}">{{link.name}}</a>
+        <a matLine (click)="sidenav.close()" routerLink="{{link.route}}">{{link.name}}</a>
         <button mat-icon-button matTooltip="{{link.info}}" matTooltipPosition="right">
           <mat-icon>info</mat-icon>
         </button>

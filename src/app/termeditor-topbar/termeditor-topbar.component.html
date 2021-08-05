@@ -1,1 +1,42 @@
-<p>termeditor-topbar works!</p>
+<div class="css-grid">
+  <div class="css-grid-tile-top">
+    <div class="mat-typography">
+      <h2>Aktueller Begriff:</h2>
+    </div>
+  </div>
+
+  <div class="css-grid-tile-bottom-left">
+    <div class="mat-typography">
+      <p>
+        Name: {{currentTerm.name}}
+      </p>
+      <p>
+        Synonyme:
+        <ng-container *ngFor="let syn of currentTerm.synonyms">
+          {{syn}},
+        </ng-container>
+      </p>
+    </div>
+  </div>
+
+  <div class="css-grid-tile-bottom-middle">
+    <div class="mat-typography">
+      <p>
+        Bemerkung: {{currentTerm.comment}}
+      </p>
+      <p>
+        Strukturierender Begriff: {{currentTerm.hide}}
+      </p>
+    </div>
+  </div>
+
+  <div class="css-grid-tile-bottom-right">
+    <button mat-stroked-button (click)="notify.emit(CLICK_MODES.BACK_TO_PREVIOUS)">Zurück zum vorigen Begriff</button>
+    <button mat-stroked-button (click)="notify.emit(CLICK_MODES.TERM_EDITED)">Begriff bearbeiten</button>
+    <button mat-stroked-button (click)="notify.emit(CLICK_MODES.TERM_DELETED)">Begriff löschen</button>
+    <button mat-stroked-button (click)="notify.emit(CLICK_MODES.NEW_TERM)">Neuen Begriff hinzufügen</button>
+    <button mat-stroked-button (click)="notify.emit(CLICK_MODES.TERM_RELATIONSHIP_ADDED)">Neue Begriffsverknüpfung hinzufügen</button>
+  </div>
+</div>
+
+

@@ -1,1 +1,13 @@
-<p>termeditor-termcontainer works!</p>
+<div class="mat-typography" *ngIf="terms.length == 0">
+  <h3 style="text-align: center;">An dieser Stelle wurden noch keine Begriffe angelegt.</h3>
+</div>
+
+<!--<div *ngFor="let term of terms">
+  <app-term [term]="term" (notify)="onNotify($event)"></app-term>
+</div>-->
+
+<mat-grid-list cols="3" rowHeight="2:1">
+  <mat-grid-tile *ngFor="let term of terms">
+    <app-term [term]="term" (notify)="onNotify($event)"></app-term>
+  </mat-grid-tile>
+</mat-grid-list>

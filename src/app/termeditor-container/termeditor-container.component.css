@@ -1,4 +1,16 @@
 .grid-layout-termeditor {
   width: 100vw;
   height: 100vh;
+  overflow-x: visible;
+  overflow-y: visible;
+}
+
+.tab-group-layout {
+  width: 100%;
+  height: 100%;
+}
+
+.termlist {
+  width: 100%;
+  height: 100%;
 }

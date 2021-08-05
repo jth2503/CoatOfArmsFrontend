@@ -1,1 +1,16 @@
-<p>termeditor-termlist works!</p>
+<div class="mat-typography">
+  <h3>Zuletzt gewählte Begriffe
+    <button mat-icon-button matTooltip="Die ausgewählten Begriffe werden hier der Reihe nach eingefügt. Ein Klick auf einen der Begriffe wählt diesen Begriff aus." matTooltipPosition="right">
+      <mat-icon>info</mat-icon>
+    </button>
+  </h3>
+</div>
+<div class="mat-typography" *ngIf="selectedTerms.length == 0">
+  <p >Noch keine Begriffe ausgewählt</p>
+</div>
+<mat-selection-list #list [multiple]="false" (selectionChange)="onSelection($event)">
+  <mat-list-option *ngFor="let term of selectedTerms; let i = index" [value]="i">
+    <ng-container *ngIf="term.hide">**</ng-container>
+    {{term.name}}
+  </mat-list-option>
+</mat-selection-list>

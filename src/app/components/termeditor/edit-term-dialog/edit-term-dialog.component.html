@@ -1,0 +1,52 @@
+<h2 matDialogTitle>Begriff bearbeiten</h2>
+<mat-dialog-content>
+  <mat-form-field appearance="outline">
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="copiedTerm.name" [formControl]="nameInput" required>
+    <mat-error *ngIf="nameInput.invalid">Name muss angegeben werden</mat-error>
+  </mat-form-field>
+
+  <mat-divider></mat-divider>
+
+  <mat-list>
+    <div class="mat-typography">
+      <h3>Synonyme: <ng-container *ngIf="copiedTerm.synonyms.length == 0">Noch keine definiert</ng-container></h3>
+    </div>
+    <mat-list-item *ngFor="let synonym of copiedTerm.synonyms; let i = index">
+      <button mat-icon-button>
+        <mat-icon mat-list-icon (click)="removeSynonym(i)">delete</mat-icon>
+      </button>
+      {{synonym}}
+    </mat-list-item>
+  </mat-list>
+  <table>
+    <tr>
+      <td>
+        <mat-form-field appearance="outline">
+          <mat-label>Neues Synonym</mat-label>
+          <input matInput [(ngModel)]="newSynonym">
+        </mat-form-field>
+      </td>
+      <td style="alignment: center">
+        <button mat-stroked-button (click)="addSynonym()">Synonym hinzufügen</button>
+      </td>
+    </tr>
+  </table>
+
+  <mat-divider></mat-divider>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Bemerkung</mat-label>
+    <textarea matInput [(ngModel)]="copiedTerm.comment"></textarea>
+  </mat-form-field>
+
+  <mat-divider></mat-divider>
+
+  <mat-checkbox labelPosition="before" [(ngModel)]="copiedTerm.hide">
+    Strukturierender Begriff
+  </mat-checkbox>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button mat-stroked-button mat-dialog-close>Abbrechen</button>
+  <button mat-stroked-button [class.spinner]="spinnerHidden" [disabled]="spinnerHidden" (click)="saveTermToDatabase()">Begriff speichern</button>
+</mat-dialog-actions>

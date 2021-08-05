@@ -18,7 +18,22 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import { TermeditorTopbarComponent } from './termeditor-topbar/termeditor-topbar.component';
 import { TermeditorTermlistComponent } from './termeditor-termlist/termeditor-termlist.component';
 import { TermeditorTermcontainerComponent } from './termeditor-termcontainer/termeditor-termcontainer.component';
-import { TermeditorContentContainerComponent } from './termeditor-content-container/termeditor-content-container.component';
+import { TermComponent } from './components/termeditor/term/term.component';
+import {MatCardModule} from "@angular/material/card";
+import {MatTabsModule} from "@angular/material/tabs";
+import { CreateNewTermDialogComponent } from './components/termeditor/create-new-term-dialog/create-new-term-dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatInputModule} from "@angular/material/input";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import { AddTermRelationshipDialogComponent } from './components/termeditor/add-term-relationship-dialog/add-term-relationship-dialog.component';
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatOptionModule} from "@angular/material/core";
+import {MatRadioModule} from "@angular/material/radio";
+import { EditTermDialogComponent } from './components/termeditor/edit-term-dialog/edit-term-dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,26 +43,41 @@ import { TermeditorContentContainerComponent } from './termeditor-content-contai
     TermeditorTopbarComponent,
     TermeditorTermlistComponent,
     TermeditorTermcontainerComponent,
-    TermeditorContentContainerComponent
+    TermComponent,
+    CreateNewTermDialogComponent,
+    AddTermRelationshipDialogComponent,
+    EditTermDialogComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    RouterModule.forRoot([
-      {path: "", component: DummyComponent},
-      {path: "termeditor", component: TermeditorContainerComponent}
-    ]),
-    MatTooltipModule,
-    MatGridListModule,
-
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        LayoutModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatSidenavModule,
+        MatIconModule,
+        MatListModule,
+        RouterModule.forRoot([
+            {path: "", component: DummyComponent},
+            {path: "termeditor", component: TermeditorContainerComponent}
+        ]),
+        MatTooltipModule,
+        MatGridListModule,
+        MatCardModule,
+        MatTabsModule,
+        MatDialogModule,
+        MatSnackBarModule,
+        MatFormFieldModule,
+        MatCheckboxModule,
+        MatInputModule,
+        FormsModule,
+        MatProgressSpinnerModule,
+        ReactiveFormsModule,
+        MatAutocompleteModule,
+        MatOptionModule,
+        MatRadioModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
