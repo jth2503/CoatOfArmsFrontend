@@ -34,6 +34,13 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatOptionModule} from "@angular/material/core";
 import {MatRadioModule} from "@angular/material/radio";
 import { EditTermDialogComponent } from './components/termeditor/edit-term-dialog/edit-term-dialog.component';
+import {MatExpansionModule} from "@angular/material/expansion";
+import {CoaListComponent} from "./components/coa-editor/coa-list/coa-list.component";
+import {MatTableModule} from "@angular/material/table";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import { UpsertCoaComponent } from './components/coa-editor/upsert-coa/upsert-coa.component';
+import {MatSortModule} from "@angular/material/sort";
 
 @NgModule({
   declarations: [
@@ -46,38 +53,49 @@ import { EditTermDialogComponent } from './components/termeditor/edit-term-dialo
     TermComponent,
     CreateNewTermDialogComponent,
     AddTermRelationshipDialogComponent,
-    EditTermDialogComponent
+    EditTermDialogComponent,
+    CoaListComponent,
+    CoaListComponent,
+    UpsertCoaComponent
   ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        HttpClientModule,
-        LayoutModule,
-        MatToolbarModule,
-        MatButtonModule,
-        MatSidenavModule,
-        MatIconModule,
-        MatListModule,
-        RouterModule.forRoot([
-            {path: "", component: DummyComponent},
-            {path: "termeditor", component: TermeditorContainerComponent}
-        ]),
-        MatTooltipModule,
-        MatGridListModule,
-        MatCardModule,
-        MatTabsModule,
-        MatDialogModule,
-        MatSnackBarModule,
-        MatFormFieldModule,
-        MatCheckboxModule,
-        MatInputModule,
-        FormsModule,
-        MatProgressSpinnerModule,
-        ReactiveFormsModule,
-        MatAutocompleteModule,
-        MatOptionModule,
-        MatRadioModule
-    ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    RouterModule.forRoot([
+      {path: "", component: DummyComponent},
+      {path: "termeditor", component: TermeditorContainerComponent},
+      {path: "coa-list", component: CoaListComponent},
+      {path: "upsert-coa", component: UpsertCoaComponent},
+      {path: "upsert-coa/:coaUUID", component: UpsertCoaComponent},
+    ]),
+    MatTooltipModule,
+    MatGridListModule,
+    MatCardModule,
+    MatTabsModule,
+    MatDialogModule,
+    MatSnackBarModule,
+    MatFormFieldModule,
+    MatCheckboxModule,
+    MatInputModule,
+    FormsModule,
+    MatProgressSpinnerModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    MatOptionModule,
+    MatRadioModule,
+    MatExpansionModule,
+    MatTableModule,
+    MatProgressBarModule,
+    MatPaginatorModule,
+    MatSortModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

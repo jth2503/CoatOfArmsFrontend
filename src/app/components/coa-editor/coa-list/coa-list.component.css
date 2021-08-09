@@ -1,0 +1,22 @@
+mat-toolbar {
+  background: white;
+  height: fit-content;
+  padding: 10px 0 0 0;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+mat-form-field {
+  padding: 0 20px 0 0;
+  width: 20%;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-cell {
+  padding: 10px 10px 10px 0;
+}
