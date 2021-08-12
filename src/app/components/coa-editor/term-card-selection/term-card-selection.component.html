@@ -1,0 +1,24 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <ng-container *ngIf="term.hide">**</ng-container>
+      {{term.name}}
+    </mat-card-title>
+
+    <mat-card-subtitle>
+      <ng-container *ngFor="let syn of term.synonyms">
+        {{syn}},
+      </ng-container>
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <p *ngIf="term.comment != ''">
+      Bemerkung: {{term.comment}}
+    </p>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-stroked-button (click)="notify.emit(term.uuid)">Auswählen</button>
+  </mat-card-actions>
+</mat-card>

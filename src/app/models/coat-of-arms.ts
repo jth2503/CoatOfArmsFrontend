@@ -6,11 +6,11 @@ export class CoatOfArms implements Deserializable{
   public name: string = "";
   public description: string = "";
   public location: string = "";
-  public containedChains: [position: number, chain: Chain][] = [];
+  public containedChains: Chain[] = [];
 
   deserialize(input: any): this {
     Object.assign(this, input);
-    this.containedChains = input.containedChains.map((chain: any) => [chain.position, new Chain().deserialize(chain.chain)]);
+    this.containedChains = input.containedChains.map((chain: any) => new Chain().deserialize(chain));
     return this;
   }
 }

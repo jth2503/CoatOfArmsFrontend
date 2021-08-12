@@ -1,1 +1,63 @@
-<p>upsert-coa works!</p>
+<mat-toolbar>
+  <span>Neues Wappen anlegen</span>
+
+  <span class="spacer"></span>
+
+  <button mat-stroked-button (click)="saveCoaToDatabase()">Änderungen speichern</button>
+</mat-toolbar>
+
+<div>
+  <mat-form-field appearance="outline" class="coa-input">
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="currentCoa.name" [formControl]="nameInput" required>
+    <mat-error *ngIf="nameInput.invalid">Name muss angegeben werden.</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="coa-input">
+    <mat-label>Ort</mat-label>
+    <input matInput [(ngModel)]="currentCoa.location">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="coa-input">
+    <mat-label>Beschreibung</mat-label>
+    <textarea matInput [(ngModel)]="currentCoa.description"></textarea>
+  </mat-form-field>
+</div>
+
+<mat-toolbar>
+  <span>Zugehörige Begriffsketten</span>
+
+  <span class="spacer"></span>
+
+  <button mat-stroked-button (click)="clickCreateNewChain()">Neue Begriffskette anlegen</button>
+</mat-toolbar>
+
+<div class="mat-typography" *ngIf="currentCoa.containedChains.length == 0">
+  <p>Keine Begriffsketten definiert</p>
+</div>
+
+<mat-list>
+  <mat-list-item *ngFor="let chain of currentCoa.containedChains; last as last; let ind = index">
+    <p matLine>
+      <ng-container *ngFor="let term of chain.containedTerms; last as last">
+        <ng-container *ngIf="term.hide">
+          ** {{term.name}}
+        </ng-container>
+        <ng-container *ngIf="!term.hide">
+          <b>{{term.name}}</b>
+        </ng-container>
+        <ng-container *ngIf="!last">
+          :&nbsp;&nbsp;
+        </ng-container>
+      </ng-container>
+    </p>
+
+    <div matLine class="chainItemButtonGroup">
+      <button mat-stroked-button class="chainItemButton" (click)="pushChainUpwards(ind)">Nach oben verschieben</button>
+      <button mat-stroked-button class="chainItemButton" (click)="pushChainDownwards(ind)">Nach unten verschieben</button>
+      <button mat-stroked-button class="chainItemButton" (click)="deleteChain(ind)">Begriffskette löschen</button>
+    </div>
+
+    <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+  </mat-list-item>
+</mat-list>

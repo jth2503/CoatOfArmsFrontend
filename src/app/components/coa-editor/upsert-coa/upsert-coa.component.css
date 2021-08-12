@@ -1,0 +1,32 @@
+mat-toolbar {
+  background: white;
+  padding: 10px 0 0 0;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.coa-input {
+  width: 32%;
+  padding: 0.5%;
+}
+
+.mat-line {
+  word-wrap: break-word !important;
+  white-space: pre-wrap !important;
+}
+
+.mat-list .mat-list-item {
+  height: initial;
+  padding-bottom: 10px;
+}
+
+.chainItemButtonGroup {
+  text-align: center;
+}
+
+.chainItemButton {
+  vertical-align: middle;
+  margin: 5px;
+}

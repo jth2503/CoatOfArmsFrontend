@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {CoatOfArms} from "../../../models/coat-of-arms";
 import {CoaEditorBackendServiceService} from "../../../services/coa-editor-backend-service.service";
 import {MatTableDataSource} from "@angular/material/table";
@@ -12,13 +12,15 @@ import {MatSort} from "@angular/material/sort";
 })
 export class CoaListComponent implements OnInit {
 
-  columnsToDisplay = ['name', 'location', 'description', 'numberChains', 'btnEdit']
+  columnsToDisplay = ['name', 'location', 'description', 'numberChains', 'btnEdit', 'btnDelete']
   coaList!: CoatOfArms[];
   dataSource!: MatTableDataSource<CoatOfArms>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private backendService: CoaEditorBackendServiceService) { }
+  constructor(
+    private backendService: CoaEditorBackendServiceService,
+    ) { }
 
   ngOnInit(): void {
     this.backendService.getAllCoatOfArms()
@@ -43,5 +45,13 @@ export class CoaListComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  clickDeleteCoa(uuid: string) {
+    this.backendService.getDeleteCoa(uuid)
+      .subscribe(() => {
+        let index = this.coaList.findIndex(coa => coa.uuid == uuid);
+        this.coaList.splice(index, 1);
+      });
   }
 }

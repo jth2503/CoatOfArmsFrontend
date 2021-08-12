@@ -41,6 +41,8 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import { UpsertCoaComponent } from './components/coa-editor/upsert-coa/upsert-coa.component';
 import {MatSortModule} from "@angular/material/sort";
+import { CreateNewChainDialogComponent } from './components/coa-editor/create-new-chain-dialog/create-new-chain-dialog.component';
+import { TermCardSelectionComponent } from './components/coa-editor/term-card-selection/term-card-selection.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import {MatSortModule} from "@angular/material/sort";
     EditTermDialogComponent,
     CoaListComponent,
     CoaListComponent,
-    UpsertCoaComponent
+    UpsertCoaComponent,
+    CreateNewChainDialogComponent,
+    TermCardSelectionComponent
   ],
   imports: [
     BrowserModule,

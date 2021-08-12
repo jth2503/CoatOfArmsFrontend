@@ -1,0 +1,30 @@
+<h2 matDialogTitle>Neue Begriffskette hinzufügen</h2>
+<mat-dialog-content>
+  <div class="mat-typography">
+    <p>
+      <ng-container *ngIf="newChain.containedTerms.length == 0">Noch keine Begriffe ausgewählt</ng-container>
+      <ng-container *ngFor="let term of newChain.containedTerms; last as last">
+        <ng-container *ngIf="term.hide">
+          ** {{term.name}}
+        </ng-container>
+        <ng-container *ngIf="!term.hide">
+          <b>{{term.name}}</b>
+        </ng-container>
+        <ng-container *ngIf="!last">
+          :&nbsp;&nbsp;
+        </ng-container>
+      </ng-container>
+    </p>
+  </div>
+
+  <mat-grid-list cols="3" rowHeight="2:1">
+    <mat-grid-tile *ngFor="let term of currentTerms">
+      <app-term-card-selection [term]="term" (notify)="onNotify($event)"></app-term-card-selection>
+    </mat-grid-tile>
+  </mat-grid-list>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button mat-stroked-button mat-dialog-close>Abbrechen</button>
+  <button mat-stroked-button (click)="removeLastTermFromChain()">Letzten Begriff aus der Kette entfernen</button>
+  <button mat-stroked-button (click)="saveNewChain()">Kette übernehmen</button>
+</mat-dialog-actions>
