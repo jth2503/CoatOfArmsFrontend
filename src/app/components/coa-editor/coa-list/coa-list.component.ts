@@ -23,7 +23,7 @@ export class CoaListComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.backendService.getAllCoatOfArms()
+    this.backendService.getAllCoatOfArms(true)
       .subscribe((data: CoatOfArms[]) => {
         this.backendService.setCoaList(data);
         this.coaList = this.backendService.getCoaList();

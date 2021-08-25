@@ -43,6 +43,10 @@ import { UpsertCoaComponent } from './components/coa-editor/upsert-coa/upsert-co
 import {MatSortModule} from "@angular/material/sort";
 import { CreateNewChainDialogComponent } from './components/coa-editor/create-new-chain-dialog/create-new-chain-dialog.component';
 import { TermCardSelectionComponent } from './components/coa-editor/term-card-selection/term-card-selection.component';
+import { ResearchCoaComponent } from './components/coa-research/research-coa/research-coa.component';
+import { CoaDetailsComponent } from './components/coa-research/coa-details/coa-details.component';
+import { ResearchChainDialogComponent } from './components/coa-research/research-chain-dialog/research-chain-dialog.component';
+import {MatStepperModule} from "@angular/material/stepper";
 
 @NgModule({
   declarations: [
@@ -60,46 +64,52 @@ import { TermCardSelectionComponent } from './components/coa-editor/term-card-se
     CoaListComponent,
     UpsertCoaComponent,
     CreateNewChainDialogComponent,
-    TermCardSelectionComponent
+    TermCardSelectionComponent,
+    ResearchCoaComponent,
+    CoaDetailsComponent,
+    ResearchChainDialogComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    RouterModule.forRoot([
-      {path: "", component: DummyComponent},
-      {path: "termeditor", component: TermeditorContainerComponent},
-      {path: "coa-list", component: CoaListComponent},
-      {path: "upsert-coa", component: UpsertCoaComponent},
-      {path: "upsert-coa/:coaUUID", component: UpsertCoaComponent},
-    ]),
-    MatTooltipModule,
-    MatGridListModule,
-    MatCardModule,
-    MatTabsModule,
-    MatDialogModule,
-    MatSnackBarModule,
-    MatFormFieldModule,
-    MatCheckboxModule,
-    MatInputModule,
-    FormsModule,
-    MatProgressSpinnerModule,
-    ReactiveFormsModule,
-    MatAutocompleteModule,
-    MatOptionModule,
-    MatRadioModule,
-    MatExpansionModule,
-    MatTableModule,
-    MatProgressBarModule,
-    MatPaginatorModule,
-    MatSortModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        LayoutModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatSidenavModule,
+        MatIconModule,
+        MatListModule,
+        RouterModule.forRoot([
+            {path: "", component: DummyComponent},
+            {path: "termeditor", component: TermeditorContainerComponent},
+            {path: "coa-list", component: CoaListComponent},
+            {path: "upsert-coa", component: UpsertCoaComponent},
+            {path: "upsert-coa/:coaUUID", component: UpsertCoaComponent},
+            {path: "coa-research", component: ResearchCoaComponent},
+            {path: "coa-details/:coaUUID", component: CoaDetailsComponent}
+        ]),
+        MatTooltipModule,
+        MatGridListModule,
+        MatCardModule,
+        MatTabsModule,
+        MatDialogModule,
+        MatSnackBarModule,
+        MatFormFieldModule,
+        MatCheckboxModule,
+        MatInputModule,
+        FormsModule,
+        MatProgressSpinnerModule,
+        ReactiveFormsModule,
+        MatAutocompleteModule,
+        MatOptionModule,
+        MatRadioModule,
+        MatExpansionModule,
+        MatTableModule,
+        MatProgressBarModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatStepperModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

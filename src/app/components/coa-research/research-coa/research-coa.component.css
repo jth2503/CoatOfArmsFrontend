@@ -1,0 +1,33 @@
+mat-toolbar {
+  background: white;
+  padding: 10px 0 0 0;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.coa-input {
+  width: 32%;
+  padding: 0.5%;
+}
+
+.same-line-heading {
+  display: inline-block;
+}
+
+.right-side-button {
+  float: right;
+}
+
+.chainItemButtonGroup {
+  text-align: center;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-cell {
+  padding: 10px 10px 10px 0;
+}

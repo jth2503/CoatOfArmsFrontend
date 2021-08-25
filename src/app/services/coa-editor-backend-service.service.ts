@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {map} from "rxjs/operators";
+import {map, single} from "rxjs/operators";
 import {CoatOfArms} from "../models/coat-of-arms";
 import {Observable} from "rxjs";
+import {Term} from "../models/term";
 
 @Injectable({
   providedIn: 'root'
@@ -25,10 +26,16 @@ export class CoaEditorBackendServiceService {
   }
 
 
-  getAllCoatOfArms(): Observable<CoatOfArms[]>{
-    return this.http.get<CoatOfArms[]>(this.BASE_URL + "coaeditor/allCoA").pipe(
-      map(data => data.map(data => new CoatOfArms().deserialize(data)))
-    );
+  getAllCoatOfArms(mode: boolean, coaUUIDList?: string[]): Observable<CoatOfArms[]>{
+    if (mode) {
+      return this.http.get<CoatOfArms[]>(this.BASE_URL + "coaeditor/allCoA").pipe(
+        map(data => data.map(data => new CoatOfArms().deserialize(data)))
+      );
+    } else {
+      return this.http.post<CoatOfArms[]>(this.BASE_URL + "coaeditor/allCoA", {coaUUIDList}).pipe(
+        map(data => data.map(data => new CoatOfArms().deserialize(data)))
+      );
+    }
   }
 
   postCoaToDatabase(coa: CoatOfArms): Observable<string> {
@@ -39,5 +46,11 @@ export class CoaEditorBackendServiceService {
 
   getDeleteCoa(coa: string): Observable<void> {
     return this.http.get<void>(this.BASE_URL + "coa/deleteCoA", {params: new HttpParams().appendAll({'termUUID': coa})});
+  }
+
+  getStartResearch(name: string, location: string, singleTerms: string, chains: Term[][]): Observable<string[]> {
+    let singleTermList = singleTerms.split(";");
+    let termUUIDs = chains.map(termlist => termlist.map(term => term.uuid));
+    return this.http.post<string[]>(this.BASE_URL + "research", {name: name, location: location, singleTerms: singleTermList, termUUIDs: termUUIDs});
   }
 }

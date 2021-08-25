@@ -1,0 +1,49 @@
+<h2 matDialogTitle>Begriffskette zur Suche hinzufügen</h2>
+<mat-dialog-content>
+
+  <button mat-stroked-button class="entrySelectionBtn" *ngIf="!normalSelection && !customSelection" (click)="clickNormalEntry()">Einstieg am Anfang der Begriffshierarchie</button>
+  <button mat-stroked-button class="entrySelectionBtn" *ngIf="!normalSelection && !customSelection" (click)="clickChosenEntry()">Einstieg bei beliebigem Begriff</button>
+
+  <mat-form-field appearance="outline" class="entrySelection" *ngIf="customSelection">
+    <mat-label>Beginn der Kette auswählen</mat-label>
+    <input matInput type="text" required [formControl]="autocompleteControl" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" panelWidth="fit-content" (optionSelected)="termSelected($event.option.value)">
+      <mat-option *ngFor="let term of filteredTerms | async" [value]="term">
+        <ng-container *ngIf="term.hide">**</ng-container>
+        {{term.name}}
+      </mat-option>
+    </mat-autocomplete>
+    <mat-error *ngIf="autocompleteControl.hasError('required')">Bitte geben Sie einen Begriff ein.</mat-error>
+    <mat-error *ngIf="autocompleteControl.hasError('incorrect')">Bitte wählen Sie einen Begriff aus der Liste aus.</mat-error>
+  </mat-form-field>
+
+  <div *ngIf="normalSelection">
+    <div class="mat-typography">
+      <p>
+        <ng-container *ngIf="newChain.containedTerms.length == 0">Noch keine Begriffe ausgewählt</ng-container>
+        <ng-container *ngFor="let term of newChain.containedTerms; last as last">
+          <ng-container *ngIf="term.hide">
+            ** {{term.name}}
+          </ng-container>
+          <ng-container *ngIf="!term.hide">
+            <b>{{term.name}}</b>
+          </ng-container>
+          <ng-container *ngIf="!last">
+            :&nbsp;&nbsp;
+          </ng-container>
+        </ng-container>
+      </p>
+    </div>
+
+    <mat-grid-list cols="3" rowHeight="2:1">
+      <mat-grid-tile *ngFor="let term of currentTermsInGrid">
+        <app-term-card-selection [term]="term" (notify)="onNotify($event)"></app-term-card-selection>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button mat-stroked-button mat-dialog-close>Abbrechen</button>
+  <button mat-stroked-button (click)="removeLastTermFromChain()" [disabled]="!normalSelection">Letzten Begriff aus der Kette entfernen</button>
+  <button mat-stroked-button (click)="saveNewChain()" [disabled]="!normalSelection">Kette zur Suche hinzufügen</button>
+</mat-dialog-actions>
