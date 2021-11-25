@@ -1,6 +1,9 @@
 # CoatOfArmsFrontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.1.
+This repository was part of my bachelor thesis ("Heraldik und Semantic Web: Redesign einer Wappendatenbank") at the University of Rostock (Germany) at the DBIS chair in the summer term of 2021.
+
+It contains the Angular frontend of the application.
+
 
 ## Development server
 
